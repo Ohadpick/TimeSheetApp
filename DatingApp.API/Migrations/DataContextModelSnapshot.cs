@@ -31,6 +31,9 @@ namespace DatingApp.API.Migrations
                     b.Property<bool>("IsMain")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Url")
                         .HasColumnType("TEXT");
 
@@ -65,7 +68,7 @@ namespace DatingApp.API.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Intrests")
+                    b.Property<string>("Interests")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Introduction")
