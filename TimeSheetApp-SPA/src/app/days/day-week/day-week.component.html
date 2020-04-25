@@ -1,0 +1,39 @@
+<div class="text-center mt-3">
+  <h2>Week {{this.weekStartDate}} - {{this.weekEndDate}}</h2>
+</div>
+
+<div class="container">
+
+  <form class="form-inline" #form="ngForm" (ngSubmit)="loadDays()" novalidate>
+    <div class="col">
+      <div class="btn-group float-right">
+        <button type="button" name="orderBy" class="btn btn-primary" 
+              [(ngModel)]="dayParams.orderBy" (click)="loadDays()" btnRadio="lastActive">Last Active</button>
+        <button type="button" name="orderBy" class="btn btn-primary" 
+              [(ngModel)]="dayParams.orderBy" (click)="loadDays()" btnRadio="created">Newest Members</button>
+      </div>
+    </div>
+  </form>
+  <br>
+  <div class="table">
+    <table class="table table-hover table-responsive">
+      <thead>
+        <tr>
+          <th class="table-primary" scope="col" *ngFor = "let column of headers">
+            {{column}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-light" *ngFor = "let day of days">
+          <td *ngFor = "let column of columns">
+            <label *ngIf="column == 'reportedDate'" class="col-form-label" for="inputDefault">{{day[column] | date: 'dd/MM/yyyy'}}</label>
+            <input *ngIf="column != 'reportedDate'" type="time" class="form-control" placeholder="" id="day[column]" 
+                  [disabled]="column == 'totalHours'" name="column" [(ngModel)]="day[column]" onfocusout="calculateTotalHHours($event)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

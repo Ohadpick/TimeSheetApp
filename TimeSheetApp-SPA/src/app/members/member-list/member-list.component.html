@@ -1,0 +1,35 @@
+<div class="text-center mt-3">
+  <h2>Users - {{pagination.totalItems}} found</h2>
+</div>
+
+<div class="container">
+
+  <form class="form-inline" #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
+    <div class="col">
+      <div class="btn-group float-right">
+        <button type="button" name="orderBy" class="btn btn-primary" 
+              [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="lastActive">Last Active</button>
+        <button type="button" name="orderBy" class="btn btn-primary" 
+              [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="created">Newest Members</button>
+      </div>
+    </div>
+  </form>
+  <br>
+  <div>
+    <ul class="list-group">
+      <li *ngFor="let user of users" class="list-group-item col-lg-12 col-md-12 col-sm-12">
+        <app-member-card [user]="user"></app-member-card>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+  <pagination [boundaryLinks]="true" 
+              [totalItems]="pagination.totalItems"
+              [itemsPerPage]="pagination.itemsPerPage"
+              [(ngModel)]="pagination.currentPage"
+              (pageChanged)="pageChanged($event)"
+              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+  </pagination>
+</div>

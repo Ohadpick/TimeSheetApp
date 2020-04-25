@@ -1,0 +1,36 @@
+<div class="containr mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <h1>Your profile</h1>
+    </div>
+    <div class="col-sm-8">
+      <div *ngIf="editForm.dirty" class="alerts alert-info">
+        <strong>Information:</strong> you have made changes. Any unsaved changes will be lost!
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{photoUrl || '../../../assets/img/user.png'}}" alt="{{user.username}}">
+        <div class="card-body">
+          <div>
+            <strong>Last Active:</strong>
+            <p>{{user.lastActive | timeago}}</p>
+          </div>
+          <div>
+            <strong>Using since:</strong>
+            <p>{{user.created | date: 'mediumDate'}}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Save Changes</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        
+      </div>
+  </div>
+</div>
